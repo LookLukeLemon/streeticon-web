@@ -1,12 +1,12 @@
 import BaseImage from "components/common/BaseImage";
 import { FiMoreVertical } from "react-icons/fi";
-import { formatDistance, subDays } from "date-fns";
+import { formatDistanceToNowStrict, getTime, subDays } from "date-fns";
 import CommentImage from "public/images/comment.svg";
 import LikeImage from "public/images/like.svg";
 import BookmarkImage from "public/images/bookmark.svg";
 import EmojiImage from "public/images/emoji.svg";
 import { StaticImageData } from "next/image";
-import { classNames } from "utils";
+import { classNames, formatDistanceToNowStrictForKorea } from "utils";
 
 export type FeedItemWriterProps = {
   img: StaticImageData;
@@ -32,8 +32,8 @@ const FeedItem = (props: FeedItemProps) => {
   const { name, desc, country, region, img } = writer;
 
   return (
-    <div className="sm:border bg-white border-zinc-200 sm:rounded-lg gap-4 grid">
-      <div className="flex items-center gap-4 p-4 pb-0">
+    <div className="sm:border bg-white border-zinc-200 sm:rounded-lg gap-2 grid">
+      <div className="flex items-center gap-4 px-4 pt-2 pb-0">
         <div className="relative h-10 aspect-square rounded-full overflow-hidden">
           <BaseImage src={img} layout="fill" objectFit="cover" />
         </div>
@@ -42,11 +42,6 @@ const FeedItem = (props: FeedItemProps) => {
           <dd className="text-xs text-zinc-400">{`${region}, ${country}`}</dd>
         </dl>
         <div className="text-zinc-400 flex text-xs gap-2">
-          <p>
-            {formatDistance(subDays(new Date(), 3), new Date(), {
-              addSuffix: true,
-            })}
-          </p>
           <div className="cursor-pointer">
             <FiMoreVertical size={20} />
           </div>
@@ -96,7 +91,7 @@ const FeedItem = (props: FeedItemProps) => {
           );
         })}
 
-        <span className="text-sm font-semibold">{likeCount} 좋아요</span>
+        <span className="text-sm font-semibold">좋아요 {likeCount}개</span>
       </div>
 
       <div className="text-sm grid gap-2 px-4">
@@ -107,15 +102,20 @@ const FeedItem = (props: FeedItemProps) => {
         <p className="text-zinc-400 cursor-pointer">{`${commentCount}개의 댓글 보기`}</p>
       </div>
 
-      <div className="md:border-t p-4 relative border-zinc-200 text-zinc-400 text-sm flex gap-2">
-        <div className="relative h-5 aspect-square cursor-pointer">
-          <BaseImage src={EmojiImage} layout="fill" objectFit="cover" />
+      <div className="md:border-t p-4 relative border-zinc-200 text-zinc-400 text-sm grid gap-2">
+        <div className="flex gap-2">
+          <div className="relative h-5 aspect-square cursor-pointer">
+            <BaseImage src={EmojiImage} layout="fill" objectFit="cover" />
+          </div>
+          <input
+            className="outline-none flex-1 w-full placeholder:text-zinc-400 text-zinc-900"
+            placeholder="댓글 달기"
+          />
+          <button className="text-[#FE446C]">올리기</button>
         </div>
-        <input
-          className="outline-none flex-1 w-full placeholder:text-zinc-400 text-zinc-900"
-          placeholder="댓글 달기"
-        />
-        <button className="text-[#FE446C]">올리기</button>
+        <p className="text-2xs">
+          {formatDistanceToNowStrictForKorea(subDays(new Date(), 3).getTime())}
+        </p>
       </div>
     </div>
   );

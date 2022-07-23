@@ -1,3 +1,10 @@
+import { formatDistanceToNow } from "date-fns";
+import locale from "date-fns/locale/ko";
+
+export const formatDistanceToNowStrictForKorea = (date: number) => {
+  return formatDistanceToNow(date, { addSuffix: true, locale: { ...locale } });
+};
+
 export const formatByThousandComma = (number: number, fractionDigits = 2) => {
   return Intl.NumberFormat("en-US", {
     minimumFractionDigits: fractionDigits,
