@@ -4,7 +4,7 @@ import SideMenu from "./side-menu/SideMenu";
 
 const LeftSide = () => {
   return (
-    <aside className="hidden md:flex md:flex-col w-64">
+    <aside className="hidden h-screen sticky top-20 md:flex md:flex-col w-64">
       <MyProfile />
       <SideMenu />
     </aside>

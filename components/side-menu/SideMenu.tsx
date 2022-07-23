@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import {
   RiHome5Fill,
   RiHome5Line,
@@ -11,11 +11,7 @@ import { TbSend } from "react-icons/tb";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { IoStatsChartOutline, IoStatsChartSharp } from "react-icons/io5";
 import SideMenuList from "./SideMenuList";
-
-export type SideMenuItemProps = {
-  imgNode: ReactNode;
-  name: string;
-};
+import SideMenuItem from "./SideMenuItem";
 
 const menuItems = [
   {
@@ -49,15 +45,6 @@ const menuItems = [
     name: "설정",
   },
 ];
-
-const SideMenuItem = ({ imgNode, name }: SideMenuItemProps) => {
-  return (
-    <div className="flex cursor-pointer hover:bg-zinc-50 text-sm items-center gap-4 text-zinc-400 px-8 py-4">
-      {imgNode}
-      {name}
-    </div>
-  );
-};
 
 const SideMenu = () => {
   return (
