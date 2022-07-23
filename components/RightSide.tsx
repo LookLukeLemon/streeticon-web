@@ -1,4 +1,3 @@
-import React from "react";
 import Suggestions from "./suggestions/Suggestions";
 import TrendingFeed from "./trending-feed/TrendingFeed";
 

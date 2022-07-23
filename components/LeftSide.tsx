@@ -1,4 +1,3 @@
-import React from "react";
 import MyProfile from "./profile/MyProfile";
 import SideMenu from "./side-menu/SideMenu";
 

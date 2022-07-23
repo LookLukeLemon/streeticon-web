@@ -5,7 +5,6 @@ import CommentImage from "public/images/comment.svg";
 import LikeImage from "public/images/like.svg";
 import BookmarkImage from "public/images/bookmark.svg";
 import EmojiImage from "public/images/emoji.svg";
-import React from "react";
 import { StaticImageData } from "next/image";
 import { classNames } from "utils";
 
