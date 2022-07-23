@@ -11,37 +11,45 @@ import { RiSendPlaneFill } from "react-icons/ri";
 import { IoStatsChartOutline, IoStatsChartSharp } from "react-icons/io5";
 import SideMenuList from "./SideMenuList";
 import SideMenuItem from "./SideMenuItem";
+import {
+  USER_MENU_FEED,
+  USER_MENU_LIKE,
+  USER_MENU_MESSAGE,
+  USER_MENU_SETTING,
+  USER_MENU_STATS,
+  USER_MENU_STREET,
+} from "common/Constants";
 
 const menuItems = [
   {
     imgNode: <RiHome5Line size={20} />,
     selectedImgNode: <RiHome5Fill size={20} />,
-    name: "피드",
+    name: USER_MENU_FEED,
   },
   {
     imgNode: <HiOutlineCollection size={20} />,
     selectedImgNode: <HiCollection size={20} />,
-    name: "골목길",
+    name: USER_MENU_STREET,
   },
   {
     imgNode: <FaRegBookmark size={20} />,
     selectedImgNode: <FaBookmark size={20} />,
-    name: "좋아요",
+    name: USER_MENU_LIKE,
   },
   {
     imgNode: <TbSend size={20} />,
     selectedImgNode: <RiSendPlaneFill size={20} />,
-    name: "메시지",
+    name: USER_MENU_MESSAGE,
   },
   {
     imgNode: <IoStatsChartOutline size={20} />,
     selectedImgNode: <IoStatsChartSharp size={20} />,
-    name: "상태",
+    name: USER_MENU_STATS,
   },
   {
     imgNode: <RiSettings5Line size={20} />,
     selectedImgNode: <RiSettings5Fill size={20} />,
-    name: "설정",
+    name: USER_MENU_SETTING,
   },
 ];
 

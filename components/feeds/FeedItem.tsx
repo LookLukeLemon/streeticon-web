@@ -1,12 +1,18 @@
 import BaseImage from "components/common/BaseImage";
 import { FiMoreVertical } from "react-icons/fi";
-import { formatDistanceToNowStrict, getTime, subDays } from "date-fns";
+import { subDays } from "date-fns";
 import CommentImage from "public/images/comment.svg";
 import LikeImage from "public/images/like.svg";
 import BookmarkImage from "public/images/bookmark.svg";
 import EmojiImage from "public/images/emoji.svg";
 import { StaticImageData } from "next/image";
 import { classNames, formatDistanceToNowStrictForKorea } from "utils";
+import {
+  FEED_ACTION_REPLY,
+  FEED_LIKE,
+  FEED_REPLY,
+  FEED_VIEW_REPLY,
+} from "common/Constants";
 
 export type FeedItemWriterProps = {
   img: StaticImageData;
@@ -58,14 +64,14 @@ const FeedItem = (props: FeedItemProps) => {
             <div className="relative h-5 aspect-square">
               <BaseImage src={LikeImage} layout="fill" objectFit="cover" />
             </div>
-            <span>좋아요</span>
+            <span>{FEED_LIKE}</span>
           </div>
 
           <div className="flex items-center gap-2 cursor-pointer">
             <div className="relative h-5 aspect-square">
               <BaseImage src={CommentImage} layout="fill" objectFit="cover" />
             </div>
-            <span>댓글 달기</span>
+            <span>{FEED_REPLY}</span>
           </div>
         </div>
         <div className="flex items-center gap-2 cursor-pointer">
@@ -91,7 +97,9 @@ const FeedItem = (props: FeedItemProps) => {
           );
         })}
 
-        <span className="text-sm font-semibold">좋아요 {likeCount}개</span>
+        <span className="text-sm font-semibold">
+          {`${FEED_LIKE} ${likeCount}개`}
+        </span>
       </div>
 
       <div className="text-sm grid gap-2 px-4">
@@ -99,7 +107,7 @@ const FeedItem = (props: FeedItemProps) => {
           <strong className="cursor-pointer">{name}</strong>
           <span>{desc}</span>
         </p>
-        <p className="text-zinc-400 cursor-pointer">{`${commentCount}개의 댓글 보기`}</p>
+        <p className="text-zinc-400 cursor-pointer">{`${commentCount}${FEED_VIEW_REPLY}`}</p>
       </div>
 
       <div className="md:border-t p-4 relative border-zinc-200 text-zinc-400 text-sm grid gap-2">
@@ -109,9 +117,9 @@ const FeedItem = (props: FeedItemProps) => {
           </div>
           <input
             className="outline-none flex-1 w-full placeholder:text-zinc-400 text-zinc-900"
-            placeholder="댓글 달기"
+            placeholder={FEED_REPLY}
           />
-          <button className="text-[#FE446C]">올리기</button>
+          <button className="text-[#FE446C]">{FEED_ACTION_REPLY}</button>
         </div>
         <p className="text-2xs">
           {formatDistanceToNowStrictForKorea(subDays(new Date(), 3).getTime())}

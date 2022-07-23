@@ -1,4 +1,19 @@
 export const QUERY_KEY_USER_PROFILE = "USER_PROFILE";
+export const QUERY_KEY_STORIES = "STORIES";
+export const QUERY_KEY_SUGGESTIONS = "SUGGESTIONS";
+export const QUERY_KEY_TRENDING_FEEDS = "TRENDING FEEDS";
+export const QUERY_KEY_FEEDS = "FEEDS";
 
 export const APP_TITLE = "골목티콘";
 export const CREATE_NEW_POST = "글 올리기";
+export const MY_STORY = "내 스토리";
+export const USER_MENU_FEED = "피드";
+export const USER_MENU_STREET = "골목길";
+export const USER_MENU_LIKE = "좋아요";
+export const USER_MENU_MESSAGE = "메시지";
+export const USER_MENU_STATS = "상태";
+export const USER_MENU_SETTING = "설정";
+export const FEED_LIKE = "좋아요";
+export const FEED_REPLY = "댓글 달기";
+export const FEED_VIEW_REPLY = "개의 댓글 보기";
+export const FEED_ACTION_REPLY = "올리기";
