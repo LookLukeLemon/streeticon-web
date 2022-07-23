@@ -4,7 +4,7 @@ import Head from "next/head";
 
 const HomePage: NextPage = () => {
   return (
-    <div className="bg-zinc-50 h-full">
+    <div className="md:bg-zinc-50 h-full">
       <Head>
         <title>골목티콘</title>
         <meta name="description" content="골목티콘" />

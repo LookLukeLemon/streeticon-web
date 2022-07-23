@@ -30,9 +30,10 @@ const FeedItem = (props: FeedItemProps) => {
   const { writer, likeCount, likePeople, commentCount, comments, images } =
     props;
   const { name, desc, country, region, img } = writer;
+
   return (
-    <div className="border bg-white border-zinc-200 rounded-lg gap-4 grid">
-      <div className="flex items-center gap-4 p-4">
+    <div className="sm:border border-t bg-white border-zinc-200 sm:rounded-lg gap-4 grid">
+      <div className="flex items-center gap-4 p-4 pb-0">
         <div className="relative h-10 aspect-square rounded-full overflow-hidden">
           <BaseImage src={img} layout="fill" objectFit="cover" />
         </div>
@@ -52,7 +53,7 @@ const FeedItem = (props: FeedItemProps) => {
         </div>
       </div>
 
-      <div className="relative h-72 mx-4 rounded-lg overflow-hidden">
+      <div className="relative h-72 md:mx-4 md:rounded-lg overflow-hidden">
         <BaseImage src={images[0]} layout="fill" objectFit="cover" />
       </div>
 
