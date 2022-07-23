@@ -32,7 +32,7 @@ const FeedItem = (props: FeedItemProps) => {
   const { name, desc, country, region, img } = writer;
 
   return (
-    <div className="sm:border border-t bg-white border-zinc-200 sm:rounded-lg gap-4 grid">
+    <div className="sm:border bg-white border-zinc-200 sm:rounded-lg gap-4 grid">
       <div className="flex items-center gap-4 p-4 pb-0">
         <div className="relative h-10 aspect-square rounded-full overflow-hidden">
           <BaseImage src={img} layout="fill" objectFit="cover" />
@@ -70,7 +70,7 @@ const FeedItem = (props: FeedItemProps) => {
             <div className="relative h-5 aspect-square">
               <BaseImage src={CommentImage} layout="fill" objectFit="cover" />
             </div>
-            <span>댓글달기</span>
+            <span>댓글 달기</span>
           </div>
         </div>
         <div className="flex items-center gap-2 cursor-pointer">
@@ -107,7 +107,7 @@ const FeedItem = (props: FeedItemProps) => {
         <p className="text-zinc-400 cursor-pointer">{`${commentCount}개의 댓글 보기`}</p>
       </div>
 
-      <div className="border-t p-4 relative border-zinc-200 text-zinc-400 text-sm flex gap-2">
+      <div className="md:border-t p-4 relative border-zinc-200 text-zinc-400 text-sm flex gap-2">
         <div className="relative h-5 aspect-square cursor-pointer">
           <BaseImage src={EmojiImage} layout="fill" objectFit="cover" />
         </div>
