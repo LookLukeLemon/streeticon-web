@@ -6,7 +6,7 @@ import BaseImage from "components/common/BaseImage";
 
 const TailRegion = () => {
   return (
-    <div className="md:w-64 w-fit flex items-center justify-end gap-4 px-8">
+    <div className="md:w-64 w-fit flex items-center justify-end gap-4 px-4 md:px-8">
       <div className="relative cursor-pointer h-6 aspect-square">
         <BaseImage src={SendImage} layout="fill" objectFit="cover" />
       </div>
