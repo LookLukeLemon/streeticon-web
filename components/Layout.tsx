@@ -6,14 +6,14 @@ import RightSide from "./RightSide";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="flex flex-col divide-y divide-zinc-200 min-h-screen">
+    <div className="flex flex-col min-h-screen">
       <Header />
       <div className="flex flex-1 divide-x divide-zinc-200">
         <LeftSide />
         <main className="flex-1">{children}</main>
         <RightSide />
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

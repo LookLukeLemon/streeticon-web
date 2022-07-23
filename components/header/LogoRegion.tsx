@@ -5,11 +5,11 @@ import LogoImage from "public/images/logo-icon.svg";
 
 const LogoRegion = () => {
   return (
-    <div className="w-64 hidden md:flex px-8 items-center space-x-4">
+    <div className="md:w-64 w-fit flex pl-4 md:px-8 items-center space-x-4">
       <div className="relative w-8 aspect-square">
         <BaseImage src={LogoImage} layout="fill" objectFit="contain" />
       </div>
-      <h1>{APP_TITLE}</h1>
+      <h1 className="hidden md:block">{APP_TITLE}</h1>
     </div>
   );
 };
