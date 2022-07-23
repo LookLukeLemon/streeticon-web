@@ -38,7 +38,6 @@ const useTrendingFeeds = (onSuccess?: any, onError?: any) => {
   return useQuery([QUERY_KEY_TRENDING_FEEDS], fetchTrendingFeeds, {
     onSuccess,
     onError,
-    suspense: true,
   });
 };
 

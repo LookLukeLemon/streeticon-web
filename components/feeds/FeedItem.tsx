@@ -38,7 +38,7 @@ const FeedItem = (props: FeedItemProps) => {
   const { name, desc, country, region, img } = writer;
 
   return (
-    <div className="sm:border bg-white border-zinc-200 sm:rounded-lg gap-2 grid">
+    <li className="sm:border bg-white border-zinc-200 sm:rounded-lg gap-2 grid">
       <div className="flex items-center gap-4 px-4 pt-2 pb-0">
         <div className="relative h-10 aspect-square rounded-full overflow-hidden">
           <BaseImage src={img} layout="fill" objectFit="cover" />
@@ -125,7 +125,7 @@ const FeedItem = (props: FeedItemProps) => {
           {formatDistanceToNowStrictForKorea(subDays(new Date(), 3).getTime())}
         </p>
       </div>
-    </div>
+    </li>
   );
 };
 

@@ -11,7 +11,7 @@ const Stories = () => {
     <StoryList>
       <MyStory />
       {stories?.map((st) => (
-        <StoryItem key={st.name} {...st} />
+        <StoryItem key={st.id} {...st} />
       ))}
     </StoryList>
   );

@@ -8,7 +8,7 @@ const Suggestions = () => {
   return (
     <SuggestionList>
       {suggestions?.map((sg) => (
-        <SuggestionItem key={sg.title} {...sg} />
+        <SuggestionItem key={sg.id} {...sg} />
       ))}
     </SuggestionList>
   );

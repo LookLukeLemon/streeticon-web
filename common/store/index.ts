@@ -16,11 +16,13 @@ export type UserProfile = {
 };
 
 export type StorySummary = {
+  id: string;
   image: string | StaticImageData;
   name: string;
 };
 
 export type SuggestionSummary = {
+  id: string;
   image: string | StaticImageData;
   title: string;
   desc: string;

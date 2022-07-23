@@ -1,5 +1,7 @@
+import LoadingSpinner from "components/common/LoadingSpinner";
 import Feeds from "components/feeds/Feeds";
 import Stories from "components/stories/Stories";
+import { Suspense } from "react";
 import { BsFillPlayFill } from "react-icons/bs";
 
 const Home = () => {
@@ -12,7 +14,9 @@ const Home = () => {
             더보기 <BsFillPlayFill size={16} />
           </button>
         </div>
-        <Stories />
+        <Suspense fallback={<LoadingSpinner />}>
+          <Stories />
+        </Suspense>
 
         <div className="hidden md:flex items-center px-4 md:px-0">
           <h2 className="flex-1 font-semibold text-xl">피드</h2>
@@ -25,7 +29,9 @@ const Home = () => {
             </dd>
           </dl>
         </div>
-        <Feeds />
+        <Suspense fallback={<LoadingSpinner />}>
+          <Feeds />
+        </Suspense>
       </div>
     </div>
   );
