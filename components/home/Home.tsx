@@ -5,7 +5,7 @@ import { BsFillPlayFill } from "react-icons/bs";
 
 const Home = () => {
   return (
-    <div className="px-16 py-8 w-full flex justify-center">
+    <div className="sm:px-4 md:px-8 lg:px-16 py-8 w-full flex justify-center">
       <div className="max-w-xl w-full grid gap-8">
         <div className="flex items-center">
           <h2 className="flex-1 font-semibold text-xl">스토리</h2>
