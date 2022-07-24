@@ -7,8 +7,8 @@ const MyStory = () => {
   return (
     <div className="flex flex-col items-center gap-2 sm:gap-4">
       <div className="h-14 sm:h-[68px] cursor-pointer aspect-square flex items-center justify-center rounded-full bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500">
-        <div className="bg-white rounded-full w-full aspect-square flex justify-center items-center overflow-hidden m-1">
-          <div className="w-8 lg:w-10 aspect-square relative">
+        <div className="bg-white rounded-full w-full aspect-square flex justify-center items-center overflow-hidden m-0.5">
+          <div className="w-6 lg:w-8 aspect-square relative">
             <BaseImage src={PlusImage} layout="fill" objectFit="cover" />
           </div>
         </div>

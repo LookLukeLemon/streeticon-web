@@ -3,6 +3,7 @@ import { UserProfile } from "common/store";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPrivate from "./useAxiosPrivate";
 import { subDays } from "date-fns";
+import BeyonceImage from "public/images/women-5.jpeg";
 
 const useProfile = (onSuccess?: any, onError?: any) => {
   const axiosPrivate = useAxiosPrivate();
@@ -13,7 +14,7 @@ const useProfile = (onSuccess?: any, onError?: any) => {
       region: "경기",
       country: "대한민국",
       address: "",
-      image: "",
+      image: BeyonceImage,
       phone: "",
       email: "",
       postCount: 5,

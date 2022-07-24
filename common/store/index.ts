@@ -6,7 +6,7 @@ export type UserProfile = {
   country: string;
   region: string;
   address: string;
-  image: string;
+  image: string | StaticImageData;
   phone: string;
   email: string;
   postCount: number;

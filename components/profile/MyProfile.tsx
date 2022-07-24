@@ -1,6 +1,5 @@
 import BaseImage from "components/common/BaseImage";
 import React from "react";
-import LogoImage from "public/images/logo-icon.svg";
 import useProfile from "hooks/useProfile";
 
 const MyProfile = () => {
@@ -9,9 +8,22 @@ const MyProfile = () => {
   return (
     <div className="flex flex-col border-b border-zinc-200">
       <div className="flex flex-col justify-center items-center py-8 ">
-        <div className="relative w-20 h-20 overflow-hidden rounded-full">
-          <BaseImage src={LogoImage} layout="fill" objectFit="contain" />
+        <div className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 rounded-full ">
+          <div className="bg-white flex items-center justify-center aspect-square rounded-full m-0.5">
+            <div className="rounded-full aspect-square m-0.5">
+              <div className="relative aspect-square h-20 overflow-hidden rounded-full">
+                {profile?.image && (
+                  <BaseImage
+                    src={profile?.image}
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                )}
+              </div>
+            </div>
+          </div>
         </div>
+
         <h3 className="font-semibold pt-4 text-center truncate px-8 w-full">
           {profile?.name}
         </h3>
