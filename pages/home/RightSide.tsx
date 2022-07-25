@@ -3,7 +3,7 @@ import TrendingFeed from "components/trending-feed/TrendingFeed";
 
 const RightSide = () => {
   return (
-    <aside className="hidden h-screen sticky top-20 xl:flex flex-col w-64 p-8">
+    <aside className="hidden h-screen sticky top-20 xl:flex flex-col w-64 p-8 bg-white">
       <h2 className="font-semibold pb-8">Trending Feed</h2>
       <TrendingFeed />
       <h2 className="font-semibold py-8">Suggestions for you</h2>
