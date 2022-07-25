@@ -54,7 +54,7 @@ const FeedItem = (props: FeedItemProps) => {
         </div>
       </div>
 
-      <div className="relative h-72 md:mx-4 md:rounded-lg overflow-hidden">
+      <div className="relative h-96 md:mx-4 md:rounded-lg overflow-hidden">
         <BaseImage src={images[0]} layout="fill" objectFit="cover" />
       </div>
 

@@ -1,5 +1,10 @@
 import { StaticImageData } from "next/image";
 
+export type SignInProps = {
+  username: string;
+  password: string;
+};
+
 export type UserProfile = {
   name: string;
   desc: string;

@@ -1,5 +1,5 @@
-import MyProfile from "./profile/MyProfile";
-import SideMenu from "./side-menu/SideMenu";
+import MyProfile from "../../components/profile/MyProfile";
+import SideMenu from "../../components/side-menu/SideMenu";
 
 const LeftSide = () => {
   return (

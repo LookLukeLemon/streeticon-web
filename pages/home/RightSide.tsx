@@ -1,5 +1,5 @@
-import Suggestions from "./suggestions/Suggestions";
-import TrendingFeed from "./trending-feed/TrendingFeed";
+import Suggestions from "components/suggestions/Suggestions";
+import TrendingFeed from "components/trending-feed/TrendingFeed";
 
 const RightSide = () => {
   return (

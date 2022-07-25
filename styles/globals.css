@@ -31,9 +31,6 @@ html {
   font-family: "Noto Sans KR", sans-serif;
 }
 
-/* FDB300 */
-/* FF9F00 */
-/* FEBE00 */
 .btn {
   @apply text-sm font-medium rounded-lg py-2 px-4;
 }
@@ -44,4 +41,11 @@ html {
 
 .btn--secondary {
   @apply bg-slate-100 text-slate-900;
+}
+
+@layer components {
+  .sign-container {
+    @apply max-w-sm flex justify-center mx-auto items-center;
+    min-height: calc(100vh - 80px);
+  }
 }
