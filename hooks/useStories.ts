@@ -57,7 +57,6 @@ const useStories = (onSuccess?: any, onError?: any) => {
   return useQuery([QUERY_KEY_STORIES], fetchStories, {
     onSuccess,
     onError,
-    suspense: true,
   });
 };
 
