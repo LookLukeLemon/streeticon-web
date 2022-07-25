@@ -7,6 +7,7 @@ export type SignInProps = {
 
 export type UserProfile = {
   name: string;
+  nickname: string;
   desc: string;
   country: string;
   region: string;

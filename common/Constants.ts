@@ -23,3 +23,7 @@ export const SIGN_UP = "회원가입";
 export const USER_PROFILE = "프로필";
 export const USER_FAVORITES = "북마크";
 export const USER_SETTING = "세팅";
+export const PROFILE_EDIT = "수정";
+export const PROFILE_POST = "포스트";
+export const PROFILE_FOLLOWER = "팔로워";
+export const PROFILE_FOLLOWING = "팔로잉";

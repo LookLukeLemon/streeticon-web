@@ -6,13 +6,14 @@ import useSignUpApi from "./useSignUpApi";
 import Link from "next/link";
 
 const SignUp = () => {
-  const { email, name, password, country, region, onChange } = useSignUp();
+  const { email, name, nickname, password, country, region, onChange } =
+    useSignUp();
   const { onSubmit } = useSignUpApi();
 
   return (
     <div className="sign-container">
       <form
-        className="gap-8 border w-full border-zinc-200 flex flex-col p-8 rounded-xl w-full"
+        className="gap-8 border border-zinc-200 flex flex-col p-8 rounded-xl w-full"
         method="post"
         encType="multipart/form-data"
         onSubmit={(e) =>
@@ -20,6 +21,7 @@ const SignUp = () => {
             e,
             email,
             name,
+            nickname,
             password,
             country,
             region,
@@ -41,6 +43,13 @@ const SignUp = () => {
           <input
             className="border rounded-lg bg-zinc-50 border-zinc-200 px-4 py-2 outline-pink-500"
             placeholder="닉네임"
+            value={nickname}
+            onChange={(e) => onChange(e, "nickname")}
+          />
+
+          <input
+            className="border rounded-lg bg-zinc-50 border-zinc-200 px-4 py-2 outline-pink-500"
+            placeholder="아이디"
             value={name}
             onChange={(e) => onChange(e, "name")}
           />

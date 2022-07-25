@@ -10,6 +10,7 @@ const useSignUpApi = () => {
     e,
     email,
     name,
+    nickname,
     password,
     country,
     region,
@@ -17,6 +18,7 @@ const useSignUpApi = () => {
     e: any;
     email: string;
     name: string;
+    nickname: string;
     password: string;
     country: string;
     region: string;
@@ -26,6 +28,7 @@ const useSignUpApi = () => {
     const jsonBody = {
       email,
       name,
+      nickname,
       password,
       country,
       region,
