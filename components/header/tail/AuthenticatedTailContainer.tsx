@@ -18,6 +18,7 @@ import {
   USER_SETTING,
 } from "common/Constants";
 import { Menu, Transition } from "@headlessui/react";
+import NewPostWrapper from "./new-post/NewPostWrapper";
 
 const AuthenticatedTailContainer = () => {
   const { setAuth } = useAuth();
@@ -41,9 +42,10 @@ const AuthenticatedTailContainer = () => {
       <div className="relative cursor-pointer h-6 aspect-square">
         <BaseImage src={SendImage} layout="fill" objectFit="cover" />
       </div>
-      <div className="relative cursor-pointer h-6 aspect-square">
+      <NewPostWrapper />
+      {/* <div className="relative cursor-pointer h-6 aspect-square">
         <BaseImage src={PlusImage} layout="fill" objectFit="cover" />
-      </div>
+      </div> */}
       <div className="relative cursor-pointer h-6 aspect-square">
         <BaseImage src={PlacesImage} layout="fill" objectFit="cover" />
       </div>

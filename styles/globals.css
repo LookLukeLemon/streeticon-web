@@ -32,7 +32,7 @@ html {
 }
 
 .btn {
-  @apply text-sm font-medium rounded-lg py-2 px-4;
+  @apply text-sm font-medium rounded-lg py-2 px-4 outline-none;
 }
 
 .btn--primary {
