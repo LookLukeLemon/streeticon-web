@@ -12,6 +12,8 @@ import {
   FEED_REPLY,
   FEED_VIEW_REPLY,
 } from "common/Constants";
+import { useState } from "react";
+import useFeedCommentApi from "./useFeedCommentApi";
 
 export type FeedItemWriterProps = {
   image: StaticImageData | string;
@@ -20,8 +22,9 @@ export type FeedItemWriterProps = {
   region: string;
   desc: string;
 };
+
 export type FeedItemProps = {
-  id: string;
+  feedNumber: string;
   desc: string;
   writer: FeedItemWriterProps;
   createdAt: string;
@@ -30,10 +33,12 @@ export type FeedItemProps = {
   commentCount: number;
   comments: [];
   image: StaticImageData;
+  refetch: () => void;
 };
 
 const FeedItem = (props: FeedItemProps) => {
   const {
+    feedNumber,
     writer,
     likeCount,
     desc,
@@ -42,14 +47,21 @@ const FeedItem = (props: FeedItemProps) => {
     comments,
     image,
     createdAt,
+    refetch,
   } = props;
-  const {
-    name,
-    desc: profileDesc,
-    country,
-    region,
-    image: profileImg,
-  } = writer;
+  const { name, country, region, image: profileImg } = writer;
+
+  const { onPostComment } = useFeedCommentApi();
+  const [yourComment, setYourComment] = useState("");
+
+  const handleYourCommentChange = (e: any) => {
+    setYourComment(e.target.value);
+  };
+
+  const handlePostCommentSuccess = () => {
+    setYourComment("");
+    refetch();
+  };
 
   return (
     <li className="sm:border bg-white border-zinc-200 sm:rounded-lg gap-2 grid">
@@ -136,10 +148,25 @@ const FeedItem = (props: FeedItemProps) => {
             <BaseImage src={EmojiImage} layout="fill" objectFit="cover" />
           </div>
           <input
+            type="text"
             className="outline-none flex-1 w-full placeholder:text-zinc-400 text-zinc-900"
             placeholder={FEED_REPLY}
+            maxLength={2200}
+            value={yourComment}
+            onChange={handleYourCommentChange}
           />
-          <button className="text-[#FE446C]">{FEED_ACTION_REPLY}</button>
+          <button
+            className="text-[#FE446C]"
+            onClick={() =>
+              onPostComment({
+                comment: yourComment,
+                feedNumber,
+                onSuccess: handlePostCommentSuccess,
+              })
+            }
+          >
+            {FEED_ACTION_REPLY}
+          </button>
         </div>
       </div>
     </li>
