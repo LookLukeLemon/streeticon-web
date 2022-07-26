@@ -55,6 +55,7 @@ const useStories = (onSuccess?: any, onError?: any) => {
   };
 
   return useQuery([QUERY_KEY_STORIES], fetchStories, {
+    initialData: mockStories,
     onSuccess,
     onError,
   });

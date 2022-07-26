@@ -1,9 +1,9 @@
 import React from "react";
+import FeedLoader from "common/loader/FeedLoader";
+import useInfiniteFeed from "hooks/useInfiniteFeed";
+import { PER_PAGE_FEED } from "common/Constants";
 import FeedList from "./FeedList";
 import FeedItem from "./FeedItem";
-import useInfiniteFeed from "hooks/useInfiniteFeed";
-import LoadingSpinner from "components/common/LoadingSpinner";
-import { PER_PAGE_FEED } from "common/Constants";
 
 const Feeds = () => {
   const { data, isLoading, refetch } = useInfiniteFeed({
@@ -11,7 +11,7 @@ const Feeds = () => {
   });
   const items = data?.pages.flatMap((p) => p.items);
 
-  if (isLoading) return <LoadingSpinner />;
+  if (isLoading) return <FeedLoader />;
 
   return (
     <FeedList>

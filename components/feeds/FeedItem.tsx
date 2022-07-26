@@ -14,6 +14,7 @@ import {
 } from "common/Constants";
 import { useState } from "react";
 import useFeedCommentApi from "./useFeedCommentApi";
+import ColorBlurImage from "components/common/ColorBlurImage";
 
 export type FeedItemWriterProps = {
   image: StaticImageData | string;
@@ -67,7 +68,7 @@ const FeedItem = (props: FeedItemProps) => {
     <li className="sm:border bg-white border-zinc-200 sm:rounded-lg gap-2 grid">
       <div className="flex items-center gap-4 px-4 pt-2 sm:pt-4 sm:pb-2 pb-0">
         <div className="relative h-10 aspect-square rounded-full overflow-hidden">
-          <BaseImage src={profileImg} layout="fill" objectFit="cover" />
+          <ColorBlurImage src={profileImg} layout="fill" objectFit="cover" />
         </div>
         <dl className="grid flex-1 content-between">
           <dd className="text-sm font-semibold">{name}</dd>
@@ -81,7 +82,7 @@ const FeedItem = (props: FeedItemProps) => {
       </div>
 
       <div className="relative h-96 md:mx-4 md:rounded-lg overflow-hidden">
-        <BaseImage src={image} layout="fill" objectFit="cover" />
+        <ColorBlurImage src={image} layout="fill" objectFit="cover" />
       </div>
 
       <div className="flex gap-4 px-4">
