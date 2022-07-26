@@ -1,6 +1,5 @@
 import BaseImage from "components/common/BaseImage";
 import { FiMoreVertical } from "react-icons/fi";
-import { subDays } from "date-fns";
 import CommentImage from "public/images/comment.svg";
 import LikeImage from "public/images/like.svg";
 import BookmarkImage from "public/images/bookmark.svg";
@@ -15,7 +14,7 @@ import {
 } from "common/Constants";
 
 export type FeedItemWriterProps = {
-  img: StaticImageData;
+  image: StaticImageData | string;
   name: string;
   country: string;
   region: string;
@@ -23,25 +22,40 @@ export type FeedItemWriterProps = {
 };
 export type FeedItemProps = {
   id: string;
+  desc: string;
   writer: FeedItemWriterProps;
   createdAt: string;
   likeCount: number;
   likePeople: FeedItemWriterProps[];
   commentCount: number;
   comments: [];
-  images: StaticImageData[];
+  image: StaticImageData;
 };
 
 const FeedItem = (props: FeedItemProps) => {
-  const { writer, likeCount, likePeople, commentCount, comments, images } =
-    props;
-  const { name, desc, country, region, img } = writer;
+  const {
+    writer,
+    likeCount,
+    desc,
+    likePeople,
+    commentCount,
+    comments,
+    image,
+    createdAt,
+  } = props;
+  const {
+    name,
+    desc: profileDesc,
+    country,
+    region,
+    image: profileImg,
+  } = writer;
 
   return (
     <li className="sm:border bg-white border-zinc-200 sm:rounded-lg gap-2 grid">
       <div className="flex items-center gap-4 px-4 pt-2 sm:pt-4 sm:pb-2 pb-0">
         <div className="relative h-10 aspect-square rounded-full overflow-hidden">
-          <BaseImage src={img} layout="fill" objectFit="cover" />
+          <BaseImage src={profileImg} layout="fill" objectFit="cover" />
         </div>
         <dl className="grid flex-1 content-between">
           <dd className="text-sm font-semibold">{name}</dd>
@@ -55,7 +69,7 @@ const FeedItem = (props: FeedItemProps) => {
       </div>
 
       <div className="relative h-96 md:mx-4 md:rounded-lg overflow-hidden">
-        <BaseImage src={images[0]} layout="fill" objectFit="cover" />
+        <BaseImage src={image} layout="fill" objectFit="cover" />
       </div>
 
       <div className="flex gap-4 px-4">
@@ -82,7 +96,7 @@ const FeedItem = (props: FeedItemProps) => {
       </div>
 
       <div className="px-4 flex items-center relative">
-        {likePeople.map((p, idx) => {
+        {likePeople?.map((p, idx) => {
           const leftOffset = idx * 4;
           return (
             <div
@@ -92,7 +106,7 @@ const FeedItem = (props: FeedItemProps) => {
                 "relative h-6 aspect-square rounded-full overflow-hidden ring-2 border-2 border-black ring-white"
               )}
             >
-              <BaseImage src={p.img} layout="fill" objectFit="cover" />
+              <BaseImage src={p.image} layout="fill" objectFit="cover" />
             </div>
           );
         })}
@@ -107,7 +121,13 @@ const FeedItem = (props: FeedItemProps) => {
           <strong className="cursor-pointer">{name}</strong>
           <span>{desc}</span>
         </p>
-        <p className="text-zinc-400 cursor-pointer">{`${commentCount}${FEED_VIEW_REPLY}`}</p>
+        {commentCount !== 0 && (
+          <p className="text-zinc-400 cursor-pointer">{`${commentCount}${FEED_VIEW_REPLY}`}</p>
+        )}
+
+        <p className="text-2xs text-zinc-400 pb-2">
+          {formatDistanceToNowStrictForKorea(Date.parse(createdAt))}
+        </p>
       </div>
 
       <div className="md:border-t p-4 relative border-zinc-200 text-zinc-400 text-sm grid gap-2">
@@ -121,9 +141,6 @@ const FeedItem = (props: FeedItemProps) => {
           />
           <button className="text-[#FE446C]">{FEED_ACTION_REPLY}</button>
         </div>
-        <p className="text-2xs">
-          {formatDistanceToNowStrictForKorea(subDays(new Date(), 3).getTime())}
-        </p>
       </div>
     </li>
   );

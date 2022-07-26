@@ -28,3 +28,5 @@ export const PROFILE_POST = "포스트";
 export const PROFILE_FOLLOWER = "팔로워";
 export const PROFILE_FOLLOWING = "팔로잉";
 export const POST_MAX_LENGTH = 2200;
+
+export const PER_PAGE_FEED = 20;

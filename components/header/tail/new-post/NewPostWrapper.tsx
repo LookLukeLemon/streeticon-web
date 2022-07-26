@@ -14,7 +14,7 @@ const NewPostWrapper = () => {
   const [isOpen, setIsOpen] = useState(false);
   const handleUploadSucess = () => {
     setIsOpen(false);
-    router.push("/");
+    router.replace("/");
   };
   return (
     <>

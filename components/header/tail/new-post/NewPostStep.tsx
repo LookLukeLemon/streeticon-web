@@ -74,7 +74,6 @@ const NewPostStep = ({ onSuccess }: NewPostStepProps) => {
       ) : (
         <div className="p-2.5 text-sm font-semibold text-center">새 포스트</div>
       )}
-
       {thumbnailBase64 ? (
         <div className="flex flex-col md:flex-row text-sm">
           <div className="relative flex-1 aspect-square">
@@ -91,6 +90,9 @@ const NewPostStep = ({ onSuccess }: NewPostStepProps) => {
             <div className="flex text-zinc-300">
               <div className="relative h-5 aspect-square">
                 <BaseImage src={EmojiImage} layout="fill" objectFit="cover" />
+                {/* <div className="absolute top-0 left-0">
+                  <EmojiPicker />
+                </div> */}
               </div>
               <div className="flex-1 text-end">{`${
                 postingText.length
