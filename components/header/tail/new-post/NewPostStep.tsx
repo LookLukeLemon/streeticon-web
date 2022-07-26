@@ -6,9 +6,12 @@ import { useRef, useState } from "react";
 import { convertToBase64 } from "utils/ImageUtils";
 import { POST_MAX_LENGTH } from "common/Constants";
 import { formatByThousandComma } from "utils";
+import useAxiosPrivate from "hooks/useAxiosPrivate";
+import { NewPostStepProps } from "./NewPostWrapper";
 
-const ImageStep = () => {
+const NewPostStep = ({ onSuccess }: NewPostStepProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const axiosPrivate = useAxiosPrivate();
   const [postingText, setPostingText] = useState("");
   const [thumbnailBase64, setThumbnailBase64] = useState<string | null>("");
 
@@ -30,11 +33,25 @@ const ImageStep = () => {
     setPostingText(e.target.value);
   };
 
-  const handleSubmitPosting = (e: any) => {
+  const handleSubmitPosting = async (e: any) => {
     e.preventDefault();
 
-    alert("TBD");
     if (postingText.length === 0 || !thumbnailBase64) return;
+
+    const jsonBody = {
+      desc: postingText,
+      image: thumbnailBase64,
+    };
+
+    try {
+      const result = await axiosPrivate.post("/api/feed", jsonBody);
+
+      if (result.status === 201) {
+        onSuccess();
+      }
+    } catch (err) {
+      // FIXME: error alert
+    }
   };
 
   return (
@@ -105,4 +122,4 @@ const ImageStep = () => {
   );
 };
 
-export default ImageStep;
+export default NewPostStep;

@@ -1,11 +1,21 @@
 import BaseImage from "components/common/BaseImage";
 import PostUploader from "components/common/PostUploader";
+import { useRouter } from "next/router";
 import PlusImage from "public/images/plus-outline.svg";
 import { useState } from "react";
-import NewPostStepper from "./NewPostStepper";
+import NewPostStep from "./NewPostStep";
+
+export type NewPostStepProps = {
+  onSuccess: () => void;
+};
 
 const NewPostWrapper = () => {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const handleUploadSucess = () => {
+    setIsOpen(false);
+    router.push("/");
+  };
   return (
     <>
       <div
@@ -15,7 +25,7 @@ const NewPostWrapper = () => {
         <BaseImage src={PlusImage} layout="fill" objectFit="cover" />
       </div>
       <PostUploader isOpen={isOpen} onIsOpen={setIsOpen}>
-        <NewPostStepper />
+        <NewPostStep onSuccess={handleUploadSucess} />
       </PostUploader>
     </>
   );
