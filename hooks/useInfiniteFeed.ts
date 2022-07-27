@@ -21,7 +21,7 @@ const useInfiniteFeed = ({
       signal,
     });
     const { items, total } = result.data;
-    await sleep(5000);
+
     return {
       items,
       total,
