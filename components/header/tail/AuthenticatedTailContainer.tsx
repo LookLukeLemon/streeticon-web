@@ -43,9 +43,7 @@ const AuthenticatedTailContainer = () => {
         <BaseImage src={SendImage} layout="fill" objectFit="cover" />
       </div>
       <NewPostWrapper />
-      {/* <div className="relative cursor-pointer h-6 aspect-square">
-        <BaseImage src={PlusImage} layout="fill" objectFit="cover" />
-      </div> */}
+
       <div className="relative cursor-pointer h-6 aspect-square">
         <BaseImage src={PlacesImage} layout="fill" objectFit="cover" />
       </div>

@@ -1,13 +1,13 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, ReactNode } from "react";
 
-export type PostUploaderProps = {
+export type PopupProps = {
   isOpen: boolean;
   onIsOpen: (isOpen: boolean) => void;
   children: ReactNode;
 };
 
-const PostUploader = ({ isOpen, onIsOpen, children }: PostUploaderProps) => {
+const FadePopup = ({ isOpen, onIsOpen, children }: PopupProps) => {
   return (
     <Transition.Root show={isOpen} as={Fragment}>
       <Dialog
@@ -43,4 +43,4 @@ const PostUploader = ({ isOpen, onIsOpen, children }: PostUploaderProps) => {
   );
 };
 
-export default PostUploader;
+export default FadePopup;

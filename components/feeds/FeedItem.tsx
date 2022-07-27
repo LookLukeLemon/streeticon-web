@@ -18,6 +18,7 @@ import usePostFeedComment, {
   PostFeedCommentProps,
 } from "hooks/usePostFeedComment";
 import LoadingSpinner from "components/common/LoadingSpinner";
+import FeedDetail from "./feed-detail/FeedDetail";
 
 export type FeedItemWriterProps = {
   image: StaticImageData | string;
@@ -70,6 +71,8 @@ const FeedItem = (props: FeedItemProps) => {
   const handlePostComment = async (jsonBody: PostFeedCommentProps) => {
     await mutate(jsonBody);
   };
+
+  const handleShowDetail = () => {};
 
   return (
     <li className="sm:border bg-white border-zinc-200 sm:rounded-lg gap-2 grid">
@@ -142,9 +145,7 @@ const FeedItem = (props: FeedItemProps) => {
           <span>{desc}</span>
         </p>
 
-        {commentCount !== 0 && (
-          <p className="text-zinc-400 cursor-pointer">{`${commentCount}${FEED_VIEW_REPLY}`}</p>
-        )}
+        {commentCount !== 0 && <FeedDetail commentCount={commentCount} />}
 
         <p className="text-2xs text-zinc-400 pb-2">
           {formatDistanceToNowStrictForKorea(Date.parse(createdAt))}
