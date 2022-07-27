@@ -1,6 +1,7 @@
 import { QUERY_KEY_FEEDS } from "common/Constants";
 import useAxiosPrivate from "./useAxiosPrivate";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { sleep } from "utils";
 
 export type InfiniteFeedProps = {
   perPage: number;
@@ -20,7 +21,7 @@ const useInfiniteFeed = ({
       signal,
     });
     const { items, total } = result.data;
-
+    await sleep(5000);
     return {
       items,
       total,

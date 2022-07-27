@@ -1,9 +1,9 @@
 import React from "react";
-import FeedLoader from "common/loader/FeedLoader";
 import useInfiniteFeed from "hooks/useInfiniteFeed";
 import { PER_PAGE_FEED } from "common/Constants";
 import FeedItem from "./FeedItem";
 import InfiniteFeedList from "./InfiniteFeedList";
+import MultiFeedLoader from "components/common/loader/MultiFeedLoader";
 
 const Feeds = () => {
   const { data, isLoading, refetch, hasNextPage, fetchNextPage } =
@@ -12,7 +12,9 @@ const Feeds = () => {
     });
   const items = data?.pages.flatMap((p) => p.items);
   const itemsLength = items?.length ?? 0;
-  if (isLoading) return <FeedLoader />;
+  if (isLoading && itemsLength === 0) {
+    return <MultiFeedLoader count={PER_PAGE_FEED} />;
+  }
 
   return (
     <InfiniteFeedList
