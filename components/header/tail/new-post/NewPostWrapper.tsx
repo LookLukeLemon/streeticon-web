@@ -10,12 +10,11 @@ export type NewPostStepProps = {
 };
 
 const NewPostWrapper = () => {
-  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const handleUploadSucess = () => {
     setIsOpen(false);
-    router.replace("/");
   };
+
   return (
     <>
       <div

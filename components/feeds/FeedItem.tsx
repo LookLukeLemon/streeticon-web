@@ -13,8 +13,11 @@ import {
   FEED_VIEW_REPLY,
 } from "common/Constants";
 import { useState } from "react";
-import useFeedCommentApi from "./useFeedCommentApi";
 import ColorBlurImage from "components/common/ColorBlurImage";
+import usePostFeedComment, {
+  PostFeedCommentProps,
+} from "hooks/usePostFeedComment";
+import LoadingSpinner from "components/common/LoadingSpinner";
 
 export type FeedItemWriterProps = {
   image: StaticImageData | string;
@@ -34,6 +37,7 @@ export type FeedItemProps = {
   commentCount: number;
   comments: [];
   image: StaticImageData;
+  page: number;
   refetch: () => void;
 };
 
@@ -48,11 +52,9 @@ const FeedItem = (props: FeedItemProps) => {
     comments,
     image,
     createdAt,
-    refetch,
+    page,
   } = props;
   const { name, country, region, image: profileImg } = writer;
-
-  const { onPostComment } = useFeedCommentApi();
   const [yourComment, setYourComment] = useState("");
 
   const handleYourCommentChange = (e: any) => {
@@ -61,7 +63,12 @@ const FeedItem = (props: FeedItemProps) => {
 
   const handlePostCommentSuccess = () => {
     setYourComment("");
-    refetch();
+  };
+
+  const { mutate, isLoading } = usePostFeedComment(handlePostCommentSuccess);
+
+  const handlePostComment = async (jsonBody: PostFeedCommentProps) => {
+    await mutate(jsonBody);
   };
 
   return (
@@ -134,6 +141,7 @@ const FeedItem = (props: FeedItemProps) => {
           <strong className="cursor-pointer">{name}</strong>
           <span>{desc}</span>
         </p>
+
         {commentCount !== 0 && (
           <p className="text-zinc-400 cursor-pointer">{`${commentCount}${FEED_VIEW_REPLY}`}</p>
         )}
@@ -156,18 +164,23 @@ const FeedItem = (props: FeedItemProps) => {
             value={yourComment}
             onChange={handleYourCommentChange}
           />
-          <button
-            className="text-[#FE446C]"
-            onClick={() =>
-              onPostComment({
-                comment: yourComment,
-                feedNumber,
-                onSuccess: handlePostCommentSuccess,
-              })
-            }
-          >
-            {FEED_ACTION_REPLY}
-          </button>
+
+          {isLoading ? (
+            <LoadingSpinner />
+          ) : (
+            <button
+              className="text-[#FE446C]"
+              onClick={() =>
+                handlePostComment({
+                  comment: yourComment,
+                  feedNumber,
+                  pageForPage: page,
+                })
+              }
+            >
+              {FEED_ACTION_REPLY}
+            </button>
+          )}
         </div>
       </div>
     </li>

@@ -3,7 +3,7 @@ const LoadingSpinner = () => {
     <div className="text-center">
       <div role="status">
         <svg
-          className="inline mr-2 w-6 h-6 text-zinc-200 animate-spin dark:text-gray-600 fill-pink-500"
+          className="inline mr-2 w-4 h-4 text-zinc-200 animate-spin dark:text-gray-600 fill-pink-500"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

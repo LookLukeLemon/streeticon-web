@@ -6,14 +6,15 @@ import { useRef, useState } from "react";
 import { convertToBase64 } from "utils/ImageUtils";
 import { POST_MAX_LENGTH } from "common/Constants";
 import { formatByThousandComma } from "utils";
-import useAxiosPrivate from "hooks/useAxiosPrivate";
 import { NewPostStepProps } from "./NewPostWrapper";
+import usePostFeed from "hooks/usePostFeed";
+import LoadingSpinner from "components/common/LoadingSpinner";
 
 const NewPostStep = ({ onSuccess }: NewPostStepProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const axiosPrivate = useAxiosPrivate();
   const [postingText, setPostingText] = useState("");
   const [thumbnailBase64, setThumbnailBase64] = useState<string | null>("");
+  const { mutate, isLoading } = usePostFeed(onSuccess);
 
   const handleImageChange = () => {
     inputRef.current?.click();
@@ -35,23 +36,12 @@ const NewPostStep = ({ onSuccess }: NewPostStepProps) => {
 
   const handleSubmitPosting = async (e: any) => {
     e.preventDefault();
-
     if (postingText.length === 0 || !thumbnailBase64) return;
 
-    const jsonBody = {
+    await mutate({
       desc: postingText,
       image: thumbnailBase64,
-    };
-
-    try {
-      const result = await axiosPrivate.post("/api/feed", jsonBody);
-
-      if (result.status === 201) {
-        onSuccess();
-      }
-    } catch (err) {
-      // FIXME: error alert
-    }
+    });
   };
 
   return (
@@ -69,7 +59,18 @@ const NewPostStep = ({ onSuccess }: NewPostStepProps) => {
             <BaseImage src={BackImage} layout="fill" objectFit="cover" />
           </button>
           <h2 className="flex-1 text-center truncate">새 포스트</h2>
-          <button className="px-2 text-sky-500">올리기</button>
+          <div className="w-20 flex justify-end items-center">
+            {isLoading ? (
+              <LoadingSpinner />
+            ) : (
+              <button
+                className="px-2 text-sky-500"
+                onClick={handleSubmitPosting}
+              >
+                올리기
+              </button>
+            )}
+          </div>
         </div>
       ) : (
         <div className="p-2.5 text-sm font-semibold text-center">새 포스트</div>
