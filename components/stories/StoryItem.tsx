@@ -1,5 +1,6 @@
 import { StorySummary } from "common/types";
 import BaseImage from "components/common/BaseImage";
+import { memo } from "react";
 
 const StoryItem = ({ image, name }: StorySummary) => {
   return (
@@ -14,4 +15,4 @@ const StoryItem = ({ image, name }: StorySummary) => {
   );
 };
 
-export default StoryItem;
+export default memo(StoryItem, (prev, next) => prev.id === next.id);
