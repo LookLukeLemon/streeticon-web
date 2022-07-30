@@ -1,4 +1,4 @@
-import { SuggestionSummary } from "common/store";
+import { SuggestionSummary } from "common/types";
 import BaseImage from "components/common/BaseImage";
 
 const SuggestionItem = ({ image, title, desc }: SuggestionSummary) => {

@@ -1,4 +1,4 @@
-import { TrendingFeedSummary } from "common/store";
+import { TrendingFeedSummary } from "common/types";
 import BaseImage from "components/common/BaseImage";
 
 const TrendingFeedItem = ({ image }: TrendingFeedSummary) => {

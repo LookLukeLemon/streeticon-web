@@ -1,4 +1,4 @@
-import { StorySummary } from "common/store";
+import { StorySummary } from "common/types";
 import BaseImage from "components/common/BaseImage";
 
 const StoryItem = ({ image, name }: StorySummary) => {

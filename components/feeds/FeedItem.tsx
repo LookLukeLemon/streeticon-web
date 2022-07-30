@@ -6,12 +6,7 @@ import BookmarkImage from "public/images/bookmark.svg";
 import EmojiImage from "public/images/emoji.svg";
 import { StaticImageData } from "next/image";
 import { classNames, formatDistanceToNowStrictForKorea } from "utils";
-import {
-  FEED_ACTION_REPLY,
-  FEED_LIKE,
-  FEED_REPLY,
-  FEED_VIEW_REPLY,
-} from "common/Constants";
+import { FEED_ACTION_REPLY, FEED_LIKE, FEED_REPLY } from "common/Constants";
 import { useState } from "react";
 import ColorBlurImage from "components/common/ColorBlurImage";
 import usePostFeedComment, {

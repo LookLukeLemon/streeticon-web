@@ -5,6 +5,11 @@ export const QUERY_KEY_TRENDING_FEEDS = "TRENDING FEEDS";
 export const QUERY_KEY_FEEDS = "FEEDS";
 
 export const APP_TITLE = "골목티콘";
+export const HOME_TITLE_STORY = "스토리";
+export const HOME_TITLE_FEED = "피드";
+export const SHOW_MORE = "더보기";
+export const SORT_RECENT = "최신순";
+export const SORT_POPULAR = "인기순";
 export const CREATE_NEW_POST = "글 올리기";
 export const MY_STORY = "내 스토리";
 export const USER_MENU_FEED = "피드";
