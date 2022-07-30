@@ -1,25 +1,22 @@
-import { useState } from "react";
+import { emailAtom, passwordAtom } from "common/store/sign-in";
+import { signInAtom } from "common/store/sign-in/api";
+import { SignInChangeProps } from "common/types";
+import { useSetAtom } from "jotai";
 
 const useSignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const setEmail = useSetAtom(emailAtom);
+  const setPassword = useSetAtom(passwordAtom);
+  const signIn = useSetAtom(signInAtom);
 
-  const handleChange = async (
-    e: React.ChangeEvent<HTMLInputElement>,
-    name: string
-  ) => {
+  const handleChange = ({ name, value }: SignInChangeProps) => {
     if (name === "password") {
-      setPassword(e.target.value);
+      setPassword(value);
     } else if (name === "email") {
-      setEmail(e.target.value);
+      setEmail(value);
     }
   };
 
-  return {
-    email,
-    password,
-    onChange: handleChange,
-  };
+  return { onChange: handleChange, signIn };
 };
 
 export default useSignIn;
