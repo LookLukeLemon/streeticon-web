@@ -10,7 +10,7 @@ export type SignInProps = {
   password: string;
 };
 
-export type SignInChangeProps = {
+export type InputChangeProps = {
   value: string;
   name: string;
 };

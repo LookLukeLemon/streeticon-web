@@ -1,6 +1,6 @@
-import { emailAtom, passwordAtom } from "common/store/sign-in";
+import { emailAtom, passwordAtom } from "common/store";
 import { signInAtom } from "common/store/sign-in/api";
-import { SignInChangeProps } from "common/types";
+import { InputChangeProps } from "common/types";
 import { useSetAtom } from "jotai";
 
 const useSignIn = () => {
@@ -8,7 +8,7 @@ const useSignIn = () => {
   const setPassword = useSetAtom(passwordAtom);
   const signIn = useSetAtom(signInAtom);
 
-  const handleChange = ({ name, value }: SignInChangeProps) => {
+  const handleChange = ({ name, value }: InputChangeProps) => {
     if (name === "password") {
       setPassword(value);
     } else if (name === "email") {

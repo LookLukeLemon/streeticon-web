@@ -1,40 +1,42 @@
-import { useState } from "react";
+import { emailAtom, passwordAtom } from "common/store";
+import {
+  countryAtom,
+  nameAtom,
+  nicknameAtom,
+  regionAtom,
+} from "common/store/sign-up";
+import { signUpAtom } from "common/store/sign-up/api";
+import { InputChangeProps } from "common/types";
+import { useSetAtom } from "jotai";
 
 const useSignUp = () => {
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [nickname, setNickname] = useState("");
-  const [password, setPassword] = useState("");
-  const [country, setCountry] = useState("대한민국");
-  const [region, setRegion] = useState("");
+  const setEmail = useSetAtom(emailAtom);
+  const setName = useSetAtom(nameAtom);
+  const setNickname = useSetAtom(nicknameAtom);
+  const setPassword = useSetAtom(passwordAtom);
+  const setCountry = useSetAtom(countryAtom);
+  const setRegion = useSetAtom(regionAtom);
+  const signUp = useSetAtom(signUpAtom);
 
-  const handleChange = async (
-    e: React.ChangeEvent<HTMLInputElement>,
-    name: string
-  ) => {
+  const handleChange = ({ name, value }: InputChangeProps) => {
     if (name === "name") {
-      setName(e.target.value);
+      setName(value);
     } else if (name === "nickname") {
-      setNickname(e.target.value);
+      setNickname(value);
     } else if (name === "password") {
-      setPassword(e.target.value);
+      setPassword(value);
     } else if (name === "email") {
-      setEmail(e.target.value);
+      setEmail(value);
     } else if (name === "country") {
-      setCountry(e.target.value);
+      setCountry(value);
     } else if (name === "region") {
-      setRegion(e.target.value);
+      setRegion(value);
     }
   };
 
   return {
-    email,
-    name,
-    nickname,
-    password,
-    country,
-    region,
     onChange: handleChange,
+    signUp,
   };
 };
 

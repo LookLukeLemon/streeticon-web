@@ -1,13 +1,13 @@
 import { EMAIL } from "common/Constants";
-import { emailAtom } from "common/store/sign-in";
-import { SignInChangeProps } from "common/types";
+import { emailAtom } from "common/store";
+import { InputChangeProps } from "common/types";
 import { useAtomValue } from "jotai";
 import React from "react";
 
-const Email = ({
+const EmailInput = ({
   onChange,
 }: {
-  onChange: (props: SignInChangeProps) => void;
+  onChange: (props: InputChangeProps) => void;
 }) => {
   const email = useAtomValue(emailAtom);
 
@@ -21,4 +21,4 @@ const Email = ({
   );
 };
 
-export default Email;
+export default EmailInput;

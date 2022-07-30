@@ -1,13 +1,13 @@
 import { PASSWORD } from "common/Constants";
-import { passwordAtom } from "common/store/sign-in";
-import { SignInChangeProps } from "common/types";
+import { passwordAtom } from "common/store";
+import { InputChangeProps } from "common/types";
 import { useAtomValue } from "jotai";
 import React from "react";
 
-const Password = ({
+const PasswordInput = ({
   onChange,
 }: {
-  onChange: (props: SignInChangeProps) => void;
+  onChange: (props: InputChangeProps) => void;
 }) => {
   const password = useAtomValue(passwordAtom);
 
@@ -22,4 +22,4 @@ const Password = ({
   );
 };
 
-export default Password;
+export default PasswordInput;

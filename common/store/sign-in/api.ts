@@ -1,7 +1,7 @@
 import axios from "axios";
 import { JotaiApiCallback, SignInProps } from "common/types";
 import { atom } from "jotai";
-import { emailAtom, passwordAtom } from ".";
+import { emailAtom, passwordAtom } from "..";
 
 export const signInAtom = atom(
   null,

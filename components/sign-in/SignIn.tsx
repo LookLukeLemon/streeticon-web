@@ -3,8 +3,8 @@ import React from "react";
 import LogoImage from "public/images/logo-icon.svg";
 import useSignIn from "./useSignIn";
 import { APP_TITLE } from "common/Constants";
-import Email from "./Email";
-import Password from "./Password";
+import EmailInput from "../common/EmailInput";
+import PasswordInput from "../common/PasswordInput";
 import SignInFunction from "./SignInFunction";
 import SignInForm from "./SignInForm";
 
@@ -18,8 +18,8 @@ const SignIn = () => {
         <BaseImage src={LogoImage} layout="fill" objectFit="contain" />
       </div>
       <div className="flex flex-col gap-2 text-sm">
-        <Email onChange={onChange} />
-        <Password onChange={onChange} />
+        <EmailInput onChange={onChange} />
+        <PasswordInput onChange={onChange} />
       </div>
 
       <SignInFunction />
