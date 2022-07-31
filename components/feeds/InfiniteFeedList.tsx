@@ -1,14 +1,7 @@
+import { InfiniteGifticonListProps } from "common/types";
 import LoadingSpinner from "components/common/LoadingSpinner";
-import { ReactNode } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import FeedList from "./FeedList";
-
-export type InfiniteGifticonListProps = {
-  children: ReactNode;
-  itemsLength: number;
-  fetchNextPage: () => void;
-  hasNextPage: boolean | undefined;
-};
 
 const InfiniteFeedList = ({
   children,
