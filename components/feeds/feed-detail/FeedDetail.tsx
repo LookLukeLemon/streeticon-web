@@ -4,9 +4,6 @@ import { useState } from "react";
 
 const FeedDetail = ({ commentCount }: { commentCount: number }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const handleUploadSucess = () => {
-    setIsOpen(false);
-  };
 
   return (
     <>

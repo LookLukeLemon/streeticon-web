@@ -61,6 +61,7 @@ export type TrendingFeedSummary = {
 export type FeedItemWriterProps = {
   image: StaticImageData | string;
   name: string;
+  nickname: string;
   country: string;
   region: string;
   desc: string;

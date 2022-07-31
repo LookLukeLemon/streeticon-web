@@ -14,6 +14,7 @@ import { useSetAtom } from "jotai";
 import { setCommentAtom } from "common/store/feed/writable";
 import FeedCommentAction from "./FeedCommentAction";
 import { postCommentAtom } from "common/store/feed/api";
+import FeedMyComments from "./FeedMyComments";
 
 const FeedItem = (props: FeedItemProps) => {
   const {
@@ -22,17 +23,16 @@ const FeedItem = (props: FeedItemProps) => {
     likeCount,
     desc,
     likePeople,
-    commentCount,
     comments,
     image,
     updatedAt,
     page,
   } = props;
-  const { name, country, region, image: profileImg } = writer;
+  const { nickname, country, region, image: profileImg } = writer;
+  const commentCount = comments?.length ?? 0;
   const setComment = useSetAtom(setCommentAtom);
   const postComment = useSetAtom(postCommentAtom);
   const { mutate, isLoading } = usePostFeedComment(() => setComment(""));
-
   const handlePostComment = () => {
     postComment({
       action: mutate,
@@ -51,7 +51,7 @@ const FeedItem = (props: FeedItemProps) => {
     <li className="sm:border bg-white border-zinc-200 sm:rounded-lg gap-2 grid">
       <div className="flex items-center gap-4 px-4 pt-2 sm:pt-4 sm:pb-2 pb-0">
         <CreatorImage profileImg={profileImg} />
-        <CreatorDesc name={name} region={region} country={country} />
+        <CreatorDesc name={nickname} region={region} country={country} />
       </div>
 
       <FeedImage image={image} />
@@ -59,8 +59,13 @@ const FeedItem = (props: FeedItemProps) => {
       <FeedLikeWithCount likePeople={likePeople} likeCount={likeCount} />
 
       <div className="text-sm grid gap-2 px-4">
-        <FeedContent name={name} desc={desc} />
-        {commentCount !== 0 && <FeedDetail commentCount={commentCount} />}
+        <FeedContent name={nickname} desc={desc} />
+        {commentCount !== 0 && (
+          <>
+            <FeedDetail commentCount={commentCount} />
+            <FeedMyComments comments={comments} />
+          </>
+        )}
         <FeedUpdatedAt updatedAt={updatedAt} />
       </div>
 
@@ -82,5 +87,5 @@ export default memo(
   (prev, next) =>
     prev.feedNumber === next.feedNumber &&
     prev.likeCount === next.likeCount &&
-    prev.commentCount === next.commentCount
+    prev.comments?.length === next.comments?.length
 );
