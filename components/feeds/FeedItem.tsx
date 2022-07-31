@@ -80,5 +80,7 @@ const FeedItem = (props: FeedItemProps) => {
 export default memo(
   FeedItem,
   (prev, next) =>
-    prev.feedNumber === next.feedNumber && prev.updatedAt === next.updatedAt
+    prev.feedNumber === next.feedNumber &&
+    prev.likeCount === next.likeCount &&
+    prev.commentCount === next.commentCount
 );

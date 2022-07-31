@@ -4,6 +4,7 @@ import { PER_PAGE_FEED } from "common/Constants";
 import FeedItem from "./FeedItem";
 import InfiniteFeedList from "./InfiniteFeedList";
 import MultiFeedLoader from "components/common/loader/MultiFeedLoader";
+import { Provider } from "jotai";
 
 const Feeds = () => {
   const { data, isLoading, refetch, hasNextPage, fetchNextPage } =
@@ -23,7 +24,9 @@ const Feeds = () => {
       hasNextPage={hasNextPage}
     >
       {items?.map((fi) => (
-        <FeedItem key={fi.feedNumber} {...fi} refetch={refetch} />
+        <Provider key={fi.feedNumber}>
+          <FeedItem {...fi} refetch={refetch} />
+        </Provider>
       ))}
     </InfiniteFeedList>
   );

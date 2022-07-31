@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { IoSearch } from "react-icons/io5";
 
 const SearchRegion = () => {
@@ -17,4 +17,4 @@ const SearchRegion = () => {
   );
 };
 
-export default SearchRegion;
+export default memo(SearchRegion);

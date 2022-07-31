@@ -1,6 +1,5 @@
-import React, { Fragment } from "react";
+import React, { Fragment, memo, useCallback } from "react";
 import PlacesImage from "public/images/places.svg";
-import PlusImage from "public/images/plus-outline.svg";
 import SendImage from "public/images/send.svg";
 import LikeImage from "public/images/like.svg";
 import UserImage from "public/images/user.svg";
@@ -20,23 +19,17 @@ import {
 import { Menu, Transition } from "@headlessui/react";
 import NewPostWrapper from "./new-post/NewPostWrapper";
 
-const AuthenticatedTailContainer = () => {
-  const { setAuth } = useAuth();
-  const { data: profile } = useProfile();
-  const axiosPrivate = useAxiosPrivate();
-  const router = useRouter();
-
-  const handleSignOut = async () => {
-    try {
-      await axiosPrivate.get("/api/auth/user/sign-out");
-      router.replace("/sign-in");
-    } catch (err) {
-      router.replace("/");
-    } finally {
-      setAuth(null);
-    }
-  };
-
+const AuthenticatedTailContainerCore = ({
+  onSignOut,
+  onGotoProfile,
+  onGotoFavorites,
+  onEdit,
+}: {
+  onSignOut: () => void;
+  onGotoProfile: () => void;
+  onGotoFavorites: () => void;
+  onEdit: () => void;
+}) => {
   return (
     <>
       <div className="relative cursor-pointer h-6 aspect-square">
@@ -74,7 +67,7 @@ const AuthenticatedTailContainer = () => {
                   className={`${
                     active && "bg-zinc-50"
                   } group flex w-full items-center rounded-md px-4 gap-4 py-2.5`}
-                  onClick={() => router.push(`/profile/${profile?.name}`)}
+                  onClick={onGotoProfile}
                 >
                   <div className="relative cursor-pointer h-4 aspect-square">
                     <BaseImage
@@ -93,9 +86,7 @@ const AuthenticatedTailContainer = () => {
                   className={`${
                     active && "bg-zinc-50"
                   } group flex w-full items-center rounded-md px-4 gap-4 py-2.5`}
-                  onClick={() =>
-                    router.push(`/profile/${profile?.name}/favorites`)
-                  }
+                  onClick={onGotoFavorites}
                 >
                   <div className="relative cursor-pointer h-4 aspect-square">
                     <BaseImage
@@ -114,7 +105,7 @@ const AuthenticatedTailContainer = () => {
                   className={`${
                     active && "bg-zinc-50"
                   } group flex w-full items-center rounded-md px-4 gap-4 py-2.5`}
-                  onClick={() => router.push(`/accounts/edit`)}
+                  onClick={onEdit}
                 >
                   <div className="relative cursor-pointer h-4 aspect-square">
                     <BaseImage
@@ -133,7 +124,7 @@ const AuthenticatedTailContainer = () => {
                   className={`${
                     active && "bg-zinc-50"
                   } group flex border-t border-zinc-200 w-full items-center px-4 py-2.5`}
-                  onClick={handleSignOut}
+                  onClick={onSignOut}
                 >
                   {LOGOUT}
                 </button>
@@ -143,6 +134,49 @@ const AuthenticatedTailContainer = () => {
         </Transition>
       </Menu>
     </>
+  );
+};
+
+const MemoizedAuthenticatedTailContainerCore = memo(
+  AuthenticatedTailContainerCore
+);
+
+const AuthenticatedTailContainer = () => {
+  const { setAuth } = useAuth();
+  const { data: profile } = useProfile();
+  const axiosPrivate = useAxiosPrivate();
+  const router = useRouter();
+
+  const handleGotoProfile = useCallback(() => {
+    router.push(`/profile/${profile?.name}`);
+  }, [profile]);
+
+  const handleGotoFavorites = useCallback(() => {
+    router.push(`/profile/${profile?.name}/favorites`);
+  }, [profile]);
+
+  const handleEdit = useCallback(() => {
+    router.push(`/accounts/edit`);
+  }, []);
+
+  const handleSignOut = useCallback(async () => {
+    try {
+      await axiosPrivate.get("/api/auth/user/sign-out");
+      router.replace("/sign-in");
+    } catch (err) {
+      router.replace("/");
+    } finally {
+      setAuth(null);
+    }
+  }, []);
+
+  return (
+    <MemoizedAuthenticatedTailContainerCore
+      onSignOut={handleSignOut}
+      onGotoProfile={handleGotoProfile}
+      onGotoFavorites={handleGotoFavorites}
+      onEdit={handleEdit}
+    />
   );
 };
 
