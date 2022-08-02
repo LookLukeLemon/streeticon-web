@@ -16,7 +16,6 @@ const useProfile = (onSuccess?: any, onError?: any) => {
   return useQuery([QUERY_KEY_USER_PROFILE], fetchProfile, {
     onSuccess,
     onError,
-    suspense: true,
   });
 };
 

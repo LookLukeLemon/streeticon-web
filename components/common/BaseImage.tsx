@@ -12,7 +12,7 @@ const customLoader = ({ src, width, quality }: ImageLoaderProps) => {
 };
 
 const BaseImage = (props: ImageProps) => {
-  return <Image loader={customLoader} {...props} />;
+  return <Image loader={customLoader} {...props} priority />;
 };
 
 export default BaseImage;

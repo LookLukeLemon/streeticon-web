@@ -22,7 +22,7 @@ const useRefreshToken = () => {
       return response.data.access_token;
     } catch (err: any) {
       if (err.response?.status === 401 || err.response?.status === 403) {
-        router.push("/user/sign-in");
+        router.push("/sign-in");
       } else {
         throw err;
       }

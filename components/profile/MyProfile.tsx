@@ -1,41 +1,49 @@
-import BaseImage from "components/common/BaseImage";
-import React from "react";
-import LogoImage from "public/images/logo-icon.svg";
+import React, { useRef } from "react";
+import useMyProfile from "./useMyProfile";
+import ProfileImage from "./ProfileImage";
+import ProfileStats from "./ProfileStats";
+import ProfileOrigin from "./ProfileOrigin";
+import ProfileBasicInfo from "./ProfileBasicInfo";
 
 const MyProfile = () => {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const {
+    image,
+    name,
+    nickname,
+    country,
+    region,
+    postCount,
+    followerCount,
+    followingCount,
+    onFileChange,
+    onImageChange,
+  } = useMyProfile(inputRef);
+
   return (
-    <div className="flex flex-col border-b border-zinc-200">
-      <div className="flex flex-col justify-center items-center py-8 ">
-        <div className="relative w-20 h-20 overflow-hidden rounded-full">
-          <BaseImage src={LogoImage} layout="fill" objectFit="contain" />
+    <div className="max-w-2xl flex flex-col items-center mx-auto border-b border-zinc-200">
+      <div className="flex py-8 w-full">
+        <input
+          style={{ display: "none" }}
+          ref={inputRef}
+          type="file"
+          onChange={onFileChange}
+        />
+        <ProfileImage image={image} onClick={onImageChange} />
+
+        <div className="px-8 flex flex-col gap-4">
+          <ProfileBasicInfo name={name} />
+          <ProfileOrigin region={region} country={country} />
+          <div className="gap-4 hidden sm:grid">
+            <ProfileStats
+              postCount={postCount}
+              followerCount={followerCount}
+              followingCount={followingCount}
+            />
+            <span className="text-sm font-semibold">{nickname}</span>
+          </div>
         </div>
-        <h3 className="font-semibold pt-4 text-center truncate px-8 w-full">
-          Luke teo
-        </h3>
-        <p className="text-xs w-full text-center truncate px-8 text-zinc-400">
-          서울, 대한민국
-        </p>
       </div>
-      <dl className="grid grid-cols-3 pb-4 px-8 ">
-        <dd className="grid grid-rows-2">
-          <span className="justify-self-center">1</span>
-          <h4 className=" text-2xs justify-self-center text-zinc-400">
-            포스트
-          </h4>
-        </dd>
-        <dd className="grid grid-rows-2">
-          <span className="justify-self-center">12</span>
-          <h4 className=" text-2xs justify-self-center text-zinc-400">
-            팔로워
-          </h4>
-        </dd>
-        <dd className="grid grid-rows-2">
-          <span className="justify-self-center">4</span>
-          <h4 className=" text-2xs justify-self-center text-zinc-400">
-            팔로잉
-          </h4>
-        </dd>
-      </dl>
     </div>
   );
 };

@@ -1,10 +1,10 @@
+import { TrendingFeedSummary } from "common/types";
 import BaseImage from "components/common/BaseImage";
-import { StaticImageData } from "next/image";
 
-const TrendingFeedItem = ({ img }: { img: StaticImageData }) => {
+const TrendingFeedItem = ({ image }: TrendingFeedSummary) => {
   return (
     <div className="relative h-20 rounded-lg overflow-hidden">
-      <BaseImage src={img} layout="fill" objectFit="cover" />
+      <BaseImage src={image} layout="fill" objectFit="cover" />
     </div>
   );
 };

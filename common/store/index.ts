@@ -1,8 +1,4 @@
-export type UserProfile = {
-  email: string;
-  nickname: string;
-  image: string;
-  address: string;
-  desc: string;
-  phone: string;
-};
+import { atom } from "jotai";
+
+export const emailAtom = atom<string>("");
+export const passwordAtom = atom<string>("");

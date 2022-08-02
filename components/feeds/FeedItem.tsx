@@ -1,124 +1,91 @@
-import BaseImage from "components/common/BaseImage";
-import { FiMoreVertical } from "react-icons/fi";
-import { formatDistanceToNowStrict, getTime, subDays } from "date-fns";
-import CommentImage from "public/images/comment.svg";
-import LikeImage from "public/images/like.svg";
-import BookmarkImage from "public/images/bookmark.svg";
-import EmojiImage from "public/images/emoji.svg";
-import { StaticImageData } from "next/image";
-import { classNames, formatDistanceToNowStrictForKorea } from "utils";
-
-export type FeedItemWriterProps = {
-  img: StaticImageData;
-  name: string;
-  country: string;
-  region: string;
-  desc: string;
-};
-export type FeedItemProps = {
-  id: string;
-  writer: FeedItemWriterProps;
-  createdAt: string;
-  likeCount: number;
-  likePeople: FeedItemWriterProps[];
-  commentCount: number;
-  comments: [];
-  images: StaticImageData[];
-};
+import { memo } from "react";
+import usePostFeedComment from "hooks/usePostFeedComment";
+import FeedDetail from "./feed-detail/FeedDetail";
+import { FeedItemProps } from "common/types";
+import CreatorImage from "./CreatorImage";
+import CreatorDesc from "./CreatorDesc";
+import FeedImage from "./FeedImage";
+import FeedFunction from "./FeedFunction";
+import FeedLikeWithCount from "./FeedLikeWithCount";
+import FeedContent from "./FeedContent";
+import FeedUpdatedAt from "./FeedUpdatedAt";
+import FeedCommentInput from "./FeedCommentInput";
+import { useSetAtom } from "jotai";
+import { setCommentAtom } from "common/store/feed/writable";
+import FeedCommentAction from "./FeedCommentAction";
+import { postCommentAtom } from "common/store/feed/api";
+import FeedMyComments from "./FeedMyComments";
 
 const FeedItem = (props: FeedItemProps) => {
-  const { writer, likeCount, likePeople, commentCount, comments, images } =
-    props;
-  const { name, desc, country, region, img } = writer;
+  const {
+    feedNumber,
+    writer,
+    likeCount,
+    desc,
+    likePeople,
+    comments,
+    image,
+    updatedAt,
+    page,
+  } = props;
+  const { nickname, country, region, image: profileImg } = writer;
+  const commentCount = comments?.length ?? 0;
+  const setComment = useSetAtom(setCommentAtom);
+  const postComment = useSetAtom(postCommentAtom);
+  const { mutate, isLoading } = usePostFeedComment(() => setComment(""));
+  const handlePostComment = () => {
+    postComment({
+      action: mutate,
+      params: { feedNumber, pageForPage: page },
+      onSuccess: handleSuccess,
+      onFail: handleFail,
+    });
+  };
+
+  const handleSuccess = () => {};
+  const handleFail = () => {
+    //FIXME: Show toast when failed
+  };
 
   return (
-    <div className="sm:border bg-white border-zinc-200 sm:rounded-lg gap-2 grid">
-      <div className="flex items-center gap-4 px-4 pt-2 pb-0">
-        <div className="relative h-10 aspect-square rounded-full overflow-hidden">
-          <BaseImage src={img} layout="fill" objectFit="cover" />
-        </div>
-        <dl className="grid flex-1 content-between">
-          <dd className="text-sm font-semibold">{name}</dd>
-          <dd className="text-xs text-zinc-400">{`${region}, ${country}`}</dd>
-        </dl>
-        <div className="text-zinc-400 flex text-xs gap-2">
-          <div className="cursor-pointer">
-            <FiMoreVertical size={20} />
-          </div>
-        </div>
+    <li className="sm:border bg-white border-zinc-200 sm:rounded-lg gap-2 grid">
+      <div className="flex items-center gap-4 px-4 pt-2 sm:pt-4 sm:pb-2 pb-0">
+        <CreatorImage profileImg={profileImg} />
+        <CreatorDesc name={nickname} region={region} country={country} />
       </div>
 
-      <div className="relative h-72 md:mx-4 md:rounded-lg overflow-hidden">
-        <BaseImage src={images[0]} layout="fill" objectFit="cover" />
-      </div>
-
-      <div className="flex gap-4 px-4">
-        <div className="flex-1 flex gap-4 text-sm ">
-          <div className="flex items-center gap-2 cursor-pointer">
-            <div className="relative h-5 aspect-square">
-              <BaseImage src={LikeImage} layout="fill" objectFit="cover" />
-            </div>
-            <span>좋아요</span>
-          </div>
-
-          <div className="flex items-center gap-2 cursor-pointer">
-            <div className="relative h-5 aspect-square">
-              <BaseImage src={CommentImage} layout="fill" objectFit="cover" />
-            </div>
-            <span>댓글 달기</span>
-          </div>
-        </div>
-        <div className="flex items-center gap-2 cursor-pointer">
-          <div className="relative h-5 aspect-square">
-            <BaseImage src={BookmarkImage} layout="fill" objectFit="cover" />
-          </div>
-        </div>
-      </div>
-
-      <div className="px-4 flex items-center relative">
-        {likePeople.map((p, idx) => {
-          const leftOffset = idx * 4;
-          return (
-            <div
-              key={idx}
-              style={{ transform: `translate(-${leftOffset}px, 0)` }}
-              className={classNames(
-                "relative h-6 aspect-square rounded-full overflow-hidden ring-2 border-2 border-black ring-white"
-              )}
-            >
-              <BaseImage src={p.img} layout="fill" objectFit="cover" />
-            </div>
-          );
-        })}
-
-        <span className="text-sm font-semibold">좋아요 {likeCount}개</span>
-      </div>
+      <FeedImage image={image} />
+      <FeedFunction />
+      <FeedLikeWithCount likePeople={likePeople} likeCount={likeCount} />
 
       <div className="text-sm grid gap-2 px-4">
-        <p className="space-x-2 line-clamp-2">
-          <strong className="cursor-pointer">{name}</strong>
-          <span>{desc}</span>
-        </p>
-        <p className="text-zinc-400 cursor-pointer">{`${commentCount}개의 댓글 보기`}</p>
+        <FeedContent name={nickname} desc={desc} />
+        {commentCount !== 0 && (
+          <>
+            <FeedDetail commentCount={commentCount} />
+            <FeedMyComments comments={comments} />
+          </>
+        )}
+        <FeedUpdatedAt updatedAt={updatedAt} />
       </div>
 
       <div className="md:border-t p-4 relative border-zinc-200 text-zinc-400 text-sm grid gap-2">
         <div className="flex gap-2">
-          <div className="relative h-5 aspect-square cursor-pointer">
-            <BaseImage src={EmojiImage} layout="fill" objectFit="cover" />
-          </div>
-          <input
-            className="outline-none flex-1 w-full placeholder:text-zinc-400 text-zinc-900"
-            placeholder="댓글 달기"
+          <FeedCommentInput onChange={setComment} />
+          <FeedCommentAction
+            isLoading={isLoading}
+            onPostComment={handlePostComment}
           />
-          <button className="text-[#FE446C]">올리기</button>
         </div>
-        <p className="text-2xs">
-          {formatDistanceToNowStrictForKorea(subDays(new Date(), 3).getTime())}
-        </p>
       </div>
-    </div>
+    </li>
   );
 };
 
-export default FeedItem;
+export default memo(
+  FeedItem,
+  (prev, next) =>
+    prev.feedNumber === next.feedNumber &&
+    prev.likeCount === next.likeCount &&
+    prev.comments?.length === next.comments?.length
+);
