@@ -15,6 +15,7 @@ import { setCommentAtom } from "common/store/feed/writable";
 import FeedCommentAction from "./FeedCommentAction";
 import { postCommentAtom } from "common/store/feed/api";
 import FeedMyComments from "./FeedMyComments";
+import { FEED_VIEW_REPLY } from "common/Constants";
 
 const FeedItem = (props: FeedItemProps) => {
   const {
@@ -55,14 +56,16 @@ const FeedItem = (props: FeedItemProps) => {
       </div>
 
       <FeedImage image={image} />
-      <FeedFunction />
+      <FeedFunction props={props} />
       <FeedLikeWithCount likePeople={likePeople} likeCount={likeCount} />
 
       <div className="text-sm grid gap-2 px-4">
         <FeedContent name={nickname} desc={desc} />
         {commentCount !== 0 && (
           <>
-            <FeedDetail props={props} />
+            <FeedDetail props={props}>
+              <p className="cursor-pointer text-zinc-400">{`${commentCount}${FEED_VIEW_REPLY}`}</p>
+            </FeedDetail>
             <FeedMyComments comments={comments} />
           </>
         )}
