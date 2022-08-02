@@ -110,6 +110,7 @@ const NewPostStep = ({ onSuccess }: NewPostStepProps) => {
             style={{ display: "none" }}
             ref={inputRef}
             type="file"
+            capture="environment"
             onChange={handleFileChange}
           />
           <button
