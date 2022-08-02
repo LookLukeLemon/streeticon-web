@@ -8,14 +8,25 @@ import ProfileBasicInfo from "./ProfileBasicInfo";
 const MyProfile = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const {
-    image,
-    name,
-    nickname,
-    country,
-    region,
-    postCount,
-    followerCount,
-    followingCount,
+    profile: {
+      image,
+      name,
+      nickname,
+      country,
+      region,
+      postCount,
+      followerCount,
+      followingCount,
+    } = {
+      image: "",
+      name: "",
+      nickname: "",
+      country: "",
+      region: "",
+      postCount: 0,
+      followerCount: 0,
+      followingCount: 0,
+    },
     onFileChange,
     onImageChange,
   } = useMyProfile(inputRef);

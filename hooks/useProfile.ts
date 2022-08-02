@@ -5,6 +5,7 @@ import { UserProfile } from "common/types";
 
 const useProfile = (onSuccess?: any, onError?: any) => {
   const axiosPrivate = useAxiosPrivate();
+
   const fetchProfile = async ({ signal }: any): Promise<UserProfile> => {
     const profileResult = await axiosPrivate.get("/api/user/profile", {
       signal,

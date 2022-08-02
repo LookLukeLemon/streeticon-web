@@ -40,14 +40,7 @@ const useMyProfile = (inputRef: React.RefObject<HTMLInputElement>) => {
   };
 
   return {
-    image: profile?.image,
-    name: profile?.name,
-    nickname: profile?.nickname,
-    country: profile?.country,
-    region: profile?.region,
-    postCount: profile?.postCount ?? 0,
-    followerCount: profile?.followerCount ?? 0,
-    followingCount: profile?.followingCount ?? 0,
+    profile,
     onImageChange: handleImageChange,
     onFileChange: handleFileChange,
   };

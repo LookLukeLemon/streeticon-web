@@ -1,11 +1,11 @@
 import { QUERY_KEY_TRENDING_FEEDS } from "common/Constants";
-import { TrendingFeedSummary } from "common/store";
 import { useQuery } from "@tanstack/react-query";
 import TrendingFeed1 from "public/images/trending-feed-1.jpg";
 import TrendingFeed2 from "public/images/trending-feed-2.jpg";
 import TrendingFeed3 from "public/images/trending-feed-3.jpg";
 import TrendingFeed4 from "public/images/trending-feed-4.jpg";
 import useAxiosPrivate from "./useAxiosPrivate";
+import { TrendingFeedSummary } from "common/types";
 
 const mockTrendingFeeds: TrendingFeedSummary[] = [
   {

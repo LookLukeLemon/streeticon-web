@@ -1,5 +1,4 @@
 import { QUERY_KEY_SUGGESTIONS } from "common/Constants";
-import { SuggestionSummary } from "common/store";
 import { useQuery } from "@tanstack/react-query";
 import BlueBottleLogo from "public/images/bluebottle-logo.svg";
 import StarbucksLogo from "public/images/starbucks-logo.svg";
@@ -9,6 +8,7 @@ import WomenImage5 from "public/images/women-5.jpeg";
 import MenImage1 from "public/images/men-1.jpg";
 import useAxiosPrivate from "./useAxiosPrivate";
 import { nanoid } from "nanoid";
+import { SuggestionSummary } from "common/types";
 
 const mockSuggestions: SuggestionSummary[] = [
   {

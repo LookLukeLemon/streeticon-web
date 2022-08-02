@@ -1,5 +1,4 @@
 import { QUERY_KEY_STORIES } from "common/Constants";
-import { StorySummary } from "common/store";
 import { useQuery } from "@tanstack/react-query";
 import WomenImage1 from "public/images/women-1.jpg";
 import WomenImage2 from "public/images/women-2.jpg";
@@ -9,6 +8,7 @@ import MenImage1 from "public/images/men-1.jpg";
 import MenImage2 from "public/images/men-2.jpg";
 import useAxiosPrivate from "./useAxiosPrivate";
 import { nanoid } from "nanoid";
+import { StorySummary } from "common/types";
 
 const mockStories: StorySummary[] = [
   {
