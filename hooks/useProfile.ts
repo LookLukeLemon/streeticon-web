@@ -1,7 +1,7 @@
 import { QUERY_KEY_USER_PROFILE } from "common/Constants";
-import { UserProfile } from "common/store";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPrivate from "./useAxiosPrivate";
+import { UserProfile } from "common/types";
 
 const useProfile = (onSuccess?: any, onError?: any) => {
   const axiosPrivate = useAxiosPrivate();
