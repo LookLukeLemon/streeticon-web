@@ -1,9 +1,13 @@
 import { FEED_VIEW_REPLY } from "common/Constants";
+import { FeedItemProps } from "common/types";
 import FadePopup from "components/common/FadePopup";
 import { useState } from "react";
+import FeedDetailContainer from "./FeedDetailContainer";
 
-const FeedDetail = ({ commentCount }: { commentCount: number }) => {
+const FeedDetail = ({ props }: { props: FeedItemProps }) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const commentCount = props?.comments?.length ?? 0;
 
   return (
     <>
@@ -14,7 +18,7 @@ const FeedDetail = ({ commentCount }: { commentCount: number }) => {
         {`${commentCount}${FEED_VIEW_REPLY}`}
       </p>
       <FadePopup isOpen={isOpen} onIsOpen={setIsOpen}>
-        <div className="p-10">상세 페이지</div>
+        <FeedDetailContainer props={props} />
       </FadePopup>
     </>
   );

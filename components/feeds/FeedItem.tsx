@@ -62,7 +62,7 @@ const FeedItem = (props: FeedItemProps) => {
         <FeedContent name={nickname} desc={desc} />
         {commentCount !== 0 && (
           <>
-            <FeedDetail commentCount={commentCount} />
+            <FeedDetail props={props} />
             <FeedMyComments comments={comments} />
           </>
         )}

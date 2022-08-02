@@ -48,4 +48,9 @@ html {
     @apply max-w-sm flex justify-center mx-auto items-center;
     min-height: calc(100vh - 80px);
   }
+
+  .feed-detail-container {
+    @apply flex flex-col sm:flex-row;
+    height: calc(100vh - 80px);
+  }
 }

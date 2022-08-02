@@ -21,7 +21,6 @@ const NewPostStep = ({ onSuccess }: NewPostStepProps) => {
   };
 
   const handleFileChange = async (event: any) => {
-    console.log("test capture", event.target.files);
     const fileObj = event.target.files && event.target.files[0];
     if (!fileObj) {
       return;

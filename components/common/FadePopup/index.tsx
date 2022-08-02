@@ -34,7 +34,7 @@ const FadePopup = ({ isOpen, onIsOpen, children }: PopupProps) => {
           leaveFrom="opacity-100 scale-100"
           leaveTo="opacity-0 scale-95"
         >
-          <Dialog.Panel className="max-w-4xl rounded-xl w-full overflow-hidden bg-white shadow-2xl ring-1 ring-black/5">
+          <Dialog.Panel className="max-w-6xl rounded-xl w-full overflow-hidden bg-white shadow-2xl ring-1 ring-black/5">
             {children}
           </Dialog.Panel>
         </Transition.Child>

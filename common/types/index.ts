@@ -76,7 +76,7 @@ export type FeedItemProps = {
   likeCount: number;
   likePeople: FeedItemWriterProps[];
   commentCount: number;
-  comments: [];
+  comments: any[];
   image: StaticImageData;
   page: number;
   refetch: () => void;

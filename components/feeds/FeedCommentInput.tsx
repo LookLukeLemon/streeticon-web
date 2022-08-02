@@ -8,7 +8,7 @@ const FeedCommentInput = ({ onChange }: { onChange: (by: string) => void }) => {
   const comment = useAtomValue(commentAtom);
   return (
     <>
-      <div className="relative h-5 aspect-square cursor-pointer">
+      <div className="relative h-6 aspect-square cursor-pointer">
         <BaseImage src={EmojiImage} layout="fill" objectFit="cover" />
       </div>
       <input
