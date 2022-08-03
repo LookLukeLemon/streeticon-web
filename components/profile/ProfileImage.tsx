@@ -19,7 +19,7 @@ const ProfileImage = ({
         >
           <div className="bg-white  flex items-center justify-center aspect-square rounded-full m-0.5">
             <div className="rounded-full aspect-square m-0.5">
-              <div className="relative aspect-square h-40 overflow-hidden rounded-full">
+              <div className="relative aspect-square h-16 sm:h-32  lg:h-40 overflow-hidden rounded-full">
                 <BaseImage src={image} layout="fill" objectFit="cover" />
               </div>
             </div>

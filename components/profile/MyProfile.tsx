@@ -17,15 +17,6 @@ const MyProfile = () => {
       postCount,
       followerCount,
       followingCount,
-    } = {
-      image: "",
-      name: "",
-      nickname: "",
-      country: "",
-      region: "",
-      postCount: 0,
-      followerCount: 0,
-      followingCount: 0,
     },
     onFileChange,
     onImageChange,
@@ -47,9 +38,9 @@ const MyProfile = () => {
           <ProfileOrigin region={region} country={country} />
           <div className="gap-4 hidden sm:grid">
             <ProfileStats
-              postCount={postCount}
-              followerCount={followerCount}
-              followingCount={followingCount}
+              postCount={postCount ?? 0}
+              followerCount={followerCount ?? 0}
+              followingCount={followingCount ?? 0}
             />
             <span className="text-sm font-semibold">{nickname}</span>
           </div>

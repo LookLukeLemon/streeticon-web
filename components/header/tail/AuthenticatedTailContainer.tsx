@@ -45,7 +45,7 @@ const AuthenticatedTailContainerCore = ({
       </div>
 
       <Menu as="div" className="relative">
-        <Menu.Button className="inline-flex w-full justify-center">
+        <Menu.Button className="items-center flex w-full justify-center">
           <div className="relative cursor-pointer h-6 aspect-square">
             <BaseImage src={UserImage} layout="fill" objectFit="cover" />
           </div>
