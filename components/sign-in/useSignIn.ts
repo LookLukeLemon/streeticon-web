@@ -1,14 +1,14 @@
-import { emailAtom, passwordAtom } from "common/store";
-import { signInAtom } from "common/store/sign-in/api";
-import { InputChangeProps } from "common/types";
-import { useSetAtom } from "jotai";
+import {emailAtom, passwordAtom} from "common/store";
+import {signInAtom} from "common/store/sign-in/api";
+import {InputChangeProps} from "common/types";
+import {useSetAtom} from "jotai";
 
 const useSignIn = () => {
   const setEmail = useSetAtom(emailAtom);
   const setPassword = useSetAtom(passwordAtom);
   const signIn = useSetAtom(signInAtom);
 
-  const handleChange = ({ name, value }: InputChangeProps) => {
+  const handleChange = ({name, value}: InputChangeProps) => {
     if (name === "password") {
       setPassword(value);
     } else if (name === "email") {
@@ -16,7 +16,7 @@ const useSignIn = () => {
     }
   };
 
-  return { onChange: handleChange, signIn };
+  return {onChange: handleChange, signIn};
 };
 
 export default useSignIn;
