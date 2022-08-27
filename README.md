@@ -1,6 +1,12 @@
 ### 👏 Streeticon Architecture
 ![Streeticon](public/streeticon_architecture.png)
 
+![Streeticon](public/login_flow.png)
+
+![Streeticon](public/authenticated_request_flow.png)
+
+![Streeticon](public/auto_refresh_token_flow.png)
+
 ### 🔥 Streeticon - Let's explore and share the upcoming, trendy, and hot places around me.
 <br/>
 <table>
