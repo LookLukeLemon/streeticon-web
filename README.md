@@ -1,3 +1,6 @@
+### 👏 Streeticon Architecture
+![Streeticon](public/streeticon_diagram.png)
+
 ### 🔥 Streeticon - Let's explore and share the upcoming, trendy, and hot places around me.
 <br/>
 <table>
